@@ -1,0 +1,18 @@
+<div class="lft-latst-reviews">
+<h3>Latest Reviews</h3>
+<div class="latst-reviw-box-lft"  ng-repeat="reviewDetail in reviews" >
+<img  ng-if="reviewDetail.product.image" class="usr-img" src="uploads/products/small/{{ reviewDetail.product.image }}" alt="" title="" />
+<img ng-if="!reviewDetail.product.image" class="usr-img" src="lib/img/noproduct.jpg" alt="" title="" />    
+<div class="reviw-dtail">
+<a class='titlesidebarreview'ui-sref="view-product({id:reviewDetail.product._id})">{{reviewDetail.product.name | cut:true:20}}</a>
+ <a ui-sref='view-profile({id:reviewDetail.user._id})' class='user-name-cmnt-lft'>by {{reviewDetail.user.first_name }} {{reviewDetail.user.last_name }} <span am-time-ago="reviewDetail.created_at"></span></a>
+<div class="star-ratng">
+    <div class="star-rating click-rating-disable" star-rating rating-value="reviewDetail.rating" data-max="5"></div>
+  
+</div>
+<p>{{reviewDetail.description| cut:true:100}}</p>
+</div>
+</div>
+<div   ng-if="totalreviews >5"  class="view-all"><a  ui-sref="reviewi-all">view all</a></div>
+
+</div>

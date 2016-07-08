@@ -1,0 +1,42 @@
+ <div class="modal-content" id="login-modal">
+      		<div class="modal-header login_modal_header">
+        		<button type="button"  ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<h2 class="modal-title" id="myModalLabel">Signup to Your Account</h2>
+      		</div>
+      		<div class="modal-body login-modal">
+      			 <form method="post" ng-submit="signup()" name="signupForm" novalidate >
+      			<div id='social-icons-conatainer'>
+	        		<div class='modal-body-left'>
+	        		  <div class="form-group"><input type="text" name='firstName' id="firstName" placeholder="Enter First Name" value="" class="form-control login-field" ng-model="credentials.first_name" required autofocus ></div>
+					  <span class="eror-msg" ng-if="signupForm.firstName.$dirty" ng-messages="signupForm.firstName.$error"><p ng-message="required">You must enter first name.</p></span>
+					   <div class="form-group"><input type="text" name='lastName' id="lastName" placeholder="Enter Last Name" value="" class="form-control login-field" ng-model="credentials.last_name"></div>
+					  <div class="form-group"><input type="text" id="username" name='email' placeholder="Enter your email" value="" class="form-control login-field" ng-model="credentials.email"  required  ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ></div>
+					  
+					   <span class="eror-msg" ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error"><p ng-message="required">Your email address is required.</p><p ng-message="pattern">Your email address is invalid.</p></span>
+
+		              <div ng-click="overwrite($event)" class="form-group">
+
+		              	<input passwordValidate type="password" id="login-pass" placeholder="Password"  no-whitespace ng-trim="false" value="" class="form-control login-field" name="password" ng-model="credentials.password" required >
+		              </div>
+
+					  <span class="eror-msg" ng-show="signupForm.password.$error.whitespace"><p> whitespace not allowed.</p></span>
+					   <span class="eror-msg" ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error"><p ng-message="required">Password is required.</p></span>
+					  
+					  <div class="form-group">
+					  
+					  	<input passwordValidate type="password" id="login-pass" placeholder="Confirm password"  no-whitespace ng-trim="false"  value="" class="form-control login-field" name="confirmPassword" ng-model="credentials.confirmPassword" compare-to="credentials.password" required>
+
+					  </div>
+					     <span class="eror-msg" ng-show="signupForm.confirmPassword.$error.whitespace"><p> whitespace not allowed.</p></span>
+						<span class="eror-msg"  ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error"><p ng-message="required">Confirm password is requrird.</p></span>
+						<span class="eror-msg"  ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error"><p ng-message="compareTo">Password must match.</p></span>
+		            	
+						 <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-success modal-login-btn">Sign up</button>
+						
+						
+		             </form>	
+	        		</div>
+	        	</div>
+      		</div>
+      		<div class="modal-footer login_modal_footer"></div>
+    	</div>

@@ -1,0 +1,46 @@
+<div class="modal-content" id="invite-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header login_modal_header">
+          <button type="button" ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h2 class="modal-title" id="myModalLabel">COMMUNITY SETTINGS</h2>
+        </div>
+        <div class="modal-body login-modal">     
+         <div id='comunity-member-popup-cntnt'>
+           <div class='modal-body-left'>
+			<div class="comunity-members-all">
+    <ul>
+      <li ng-repeat="member in items.all">
+	   <img ng-if='member.user.image' src="uploads/users/small/{{member.user.image}}">
+	   <img ng-if='!member.user.image'  src="uploads/noimage.png">
+	   {{ member.user.first_name}}  {{member.user.last_name }} 
+	  <div class="admin-txt-comunty-admin" ng-if='member.role== 1' >(Admin)</div>
+	   <div class="admin-txt-comunty-admin" ng-if='member.role== 2 ' >(Author)</div>
+	   
+		 <div class="btn-group com-member-list-seting" ng-if='items.myrole.role==2'>
+		 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="icon-caret-down"><i aria-hidden="true" class="fa fa-angle-down"></i></span></a>
+		 <ul class="dropdown-menu">
+		 <li ng-if='member.role== 0'><a ng-click='makeadmin(member.community_id,member.user_id,"add")'><i class="icon-fixed-width icon-pencil"></i>Make Admin</a></li>
+		 <li ng-if='member.role== 1'><a ng-click='makeadmin(member.community_id,member.user_id,"remove")'><i class="icon-fixed-width icon-pencil"></i>Remove admin</a></li>
+		 <li  ng-if='member.role== 0 || member.role== 1' ><a ng-click='deletemember(member.community_id,member.user_id)'><i class="icon-fixed-width icon-trash"></i> Delete</a></li>
+		  <li  ng-if='member.role== 2'><a ng-click='deletemember(member.community_id,member.user_id)'><i class="icon-fixed-width icon-trash"></i> Leave</a></li>
+		 </ul>		 
+		 </div>
+		 
+		 <div class="btn-group com-member-list-seting" ng-if='items.myrole.role== 1 && member.role==0'>
+		 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="icon-caret-down"><i aria-hidden="true" class="fa fa-angle-down"></i></span></a>
+		 <ul class="dropdown-menu">
+		 <li><a ng-click='makeadmin(member.community_id,member.user_id,"add")'><i class="icon-fixed-width icon-pencil"></i> Make Admin</a></li>
+		 <li><a ng-click='deletemember(member.community_id,member.user_id)'><i class="icon-fixed-width icon-trash"></i> Delete</a></li>
+		 </ul>		 
+		 </div>
+		 
+	</li>
+    </ul>
+  </div>
+           
+          </div>		
+        </div>
+    <div class="modal-footer login_modal_footer"></div>
+</div>
+</div>

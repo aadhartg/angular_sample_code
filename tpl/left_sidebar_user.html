@@ -1,0 +1,62 @@
+<div class="col-lg-3 col-md-3 left-dash" ng-cloak>
+<div class="profile-sectn-lft">
+    <img class="profile-lft-img" src="{{user_image}}" />
+        <div class="profile-dtail-lft">
+            <h3> {{ profileinfo.first_name | capitalize }} {{ profileinfo.last_name | capitalize }}</h3>
+            <p><span ng-if="profileinfo.city"> {{profileinfo.city | capitalize}}</span><span ng-if="profileinfo.state">, {{profileinfo.state | capitalize}}</span></p>
+            <div class="followers-dtail"><img src="lib/img/followers-icn.png" alt="" title="" /> <a ui-sref='list-followers({id:profileinfo._id})'>{{profileinfo.user_followers.length}} followers</a></div>
+            <div class="followers-dtail"><img src="lib/img/reviewed-icn.png" alt="" title="" /> <a ui-sref='list-following({id:profileinfo._id})'>{{profileinfo.user_following.length}} following</a></div>
+            <a ng-if='!isme && token' ng-show="followed" ng-click="dofollow('unfollow')" class="follow-green-btn" >
+                <img  src="lib/img/follow-btn-tick.png" alt="" title="" /> Followed</a>
+            <a ng-if='!isme && token' ng-if style="cursor: pointer;" ng-show="!followed" class="follow-green-btn" ng-click="dofollow('follow')" >
+                Follow</a>
+        </div>
+</div>
+<div   ng-if='privacy.fourms' class="left-dash-sctions">
+<h4>Forums</h4>
+<ul class="prodcts-list-top">
+<li ng-repeat="data in fourm" >
+    <a  ng-if='token' ui-sref="fourmView({id:data._id})">{{ data.title | cut:true:200}}</a>
+    <a   ng-if='!token' ui-sref="fourm-details({id:data._id})">{{ data.title | cut:true:200}}</a>
+</li>
+<li ng-if='fourm.length==0' >No Fourms</li>
+</ul>
+<div ng-if="fourmtotal >5"  class="view-all"><a ui-sref="fourms">view all</a></div>
+</div>
+<div  ng-if='privacy.faveprodcut'  class="left-dash-sctions tab-hdng-link"><h4><a class="" ui-sref='list-favorite({id:profileinfo._id})'>Favorite Products <span>{{ favoriteCount }}</span></a></h4></div>
+
+<div class="left-dash-sctions">
+<h4>Communities</h4>
+<ul class="prodcts-list-top">
+<li ng-repeat="coms in community">
+     <a  ng-if='token' ui-sref="communityView({id:coms._id})"> {{ coms.title | cut:true:150 }}</a>
+    <a   ng-if='!token' ui-sref="community-view({id:coms._id})"> {{ coms.title | cut:true:150 }}</a>
+   </li>
+
+</ul>
+</div>
+
+<div ng-if='privacy.review' class="lft-latst-reviews lft-pdrct-reviewd" >
+<h3>Products Reviewed</h3>
+
+<div class="latst-reviw-box-lft"  ng-repeat="reviewDetail in reviews" >
+<img  ng-if="reviewDetail.product.image" class="usr-img" src="uploads/products/small/{{ reviewDetail.product.image }}" alt="" title="" />
+<img ng-if="!reviewDetail.product.image" class="usr-img" src="lib/img/noproduct.jpg" alt="" title="" />    
+<div class="reviw-dtail"  ng-controller='ProductsController'>
+<a ng-if='token' class='titlesidebarreview'ui-sref="view-product({id:reviewDetail.product._id})">{{reviewDetail.product.name | cut:true:20}}</a>
+ <a ng-if='!token'  class='titlesidebarreview'ui-sref="product-view({id:reviewDetail.product._id})">{{reviewDetail.product.name | cut:true:20}}</a>
+ <a  ng-if='!token'  ui-sref='users-profile({id:reviewDetail.user._id})' class='user-name-cmnt-lft'>by {{reviewDetail.user.first_name }} {{reviewDetail.user.last_name }} <span am-time-ago="reviewDetail.created_at"></span></a>
+ <a  ng-if='token' ui-sref='view-profile({id:reviewDetail.user._id})' class='user-name-cmnt-lft'>by {{reviewDetail.user.first_name }} {{reviewDetail.user.last_name }} <span am-time-ago="reviewDetail.created_at"></span></a>
+<div class="star-ratng" ng-click="openrating('lg',reviewDetail.rating)" >
+    <div   class="star-rating click-rating-disable"  is-disable='true' star-rating rating-value="reviewDetail.rating" data-max="5"></div>
+</div>
+<p>{{reviewDetail.description| cut:true:100}}</p>
+</div>
+</div>
+<div class="latst-reviw-box-lft" ng-if='reviews.length==0' >
+    No Reviews Given
+</div>    
+<div ng-if="totalreviews >5"  class="view-all"><a  ui-sref="reviewi-all">view all</a></div>
+</div>
+
+</div>

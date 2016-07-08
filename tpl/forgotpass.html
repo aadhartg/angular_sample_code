@@ -1,0 +1,24 @@
+
+<div class="modal-content" id="login-modal">
+      		<div class="modal-header login_modal_header">
+        		<button type="button"  ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<h2 class="modal-title" id="myModalLabel">Enter Your Email</h2>
+      		</div>
+      		<div class="modal-body login-modal">
+      			    <form method="post" ng-submit="reset(credentials)" name="forgotForm">
+      			<div id='social-icons-conatainer'>
+	        		<div class='modal-body-left'>
+	        		  <div class="form-group"><input type="text" id="email" name="email" ng-model="credentials.email" placeholder="Enter your email" value="" required
+            ng-pattern="/^[A-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"  autofocus class="form-control login-field"></div>
+		            	   <span class="eror-msg" ng-if="forgotForm.email.$dirty" ng-messages="forgotForm.email.$error"><p ng-message="required">Your email address is required.</p><p ng-message="pattern">Your email address is invalid.</p></span>
+						   <button type="submit" ng-disabled="forgotForm.$invalid" class="btn btn-success modal-login-btn">Submit</button>
+						
+	        		</div>
+	        	</div>
+				 </form>
+      		</div>
+      		<div class="modal-footer login_modal_footer"></div>
+    	</div>
+ 
+ 
+

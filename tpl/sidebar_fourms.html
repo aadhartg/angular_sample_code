@@ -1,0 +1,7 @@
+<div class="left-dash-sctions">
+<h4>Forums <a ui-sref="fourmAdd" class="addfourm" >+</a></h4>
+<ul class="prodcts-list-top">
+<li ng-repeat="data in fourm" ><a ui-sref="fourmView({id:data._id})">{{ data.title | cut:true:200}}</a></li>
+</ul>
+<div ng-if="fourmtotal >5"  class="view-all"><a ui-sref="fourms">view all</a></div>
+</div>

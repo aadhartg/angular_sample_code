@@ -1,0 +1,10 @@
+
+<div class="wrapper">
+  <div class="header">
+    <div class="container">      
+        <div class="logo"><a href="#/"><img src="lib/img/logo.png" alt="" title="" /></a></div>
+          <div ng-if='!token' class="login-btn"><a  ng-click="open('login','lg')" >Login</a>/<a ng-click="open('siginup','lg')">Sign Up</a></div>
+          <div ng-if='token' class="login-btn"><a  ui-sref="userdashboard" >Dashboard</a></div>
+    
+        </div>
+     </div>

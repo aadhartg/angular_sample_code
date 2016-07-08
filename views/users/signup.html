@@ -1,0 +1,147 @@
+
+<user-header></user-header>
+
+<!--dasboard start-->
+<div class="dash-complete">
+<sidebaruser-profile></sidebaruser-profile>
+<!--left dashboard end-->
+
+<!--right dashboard start-->
+<div class="col-lg-9 col-md-9 right-dash">
+
+<div class="dash-edit-profile-sctn" ng-init="getProfileSetting()">
+<h2>Edit Profile</h2>
+ <form role="form" ng-submit="updateProfileSetting()"  name="detail" >
+<div class="dash-edit-profile-sctn-inner">
+<div class="edit-text-box"><label>Upload Image</label> 
+<input type="file" class="edit-prfle-upload-img-input" ng-model="setting.imagefile" id="fileInput" name="file"  accept="image/*" ngf-max-size="2MB">
+
+			<div ng-show="(imagefile.file.$dirty || submitted) && imagefile.file.$error.required">
+                <h4 class="error">Please select image.</h4>
+            </div>
+            <div ng-show="(imagefile.file.$dirty || submitted) && imagefile.file.$error.maxSize">
+                <h4 class="error">File too large {{imagefile.size / 1000000|number:1}}MB: max {{imagefile.$errorParam}}</h4>
+            </div>
+            
+            <input type="hidden" ng-model="setting.user_image" id="imageCode" >
+
+<img class="profile-lft-img"  width="100" height="100"  id="img" src="{{user_image}}" alt="" title="" />
+</div>
+
+<div class="edit-text-box"><label>First Name</label> 
+	<input  type="text" placeholder=""  ng-model="setting.first_name" required />
+</div>
+<div class="edit-text-box"><label>Last Name</label> 
+	<input type="text" placeholder="" ng-model="setting.last_name" required />
+</div>
+<div class="edit-text-box"><label>Country</label>
+	<select ng-model="setting.country" required>
+	    <option>United States of America</option>
+	     <option>China</option>
+	      <option>Brazil</option>
+	       <option>India</option>
+	       
+	</select>
+</div>
+<div class="edit-text-box"><label>State</label> 
+	<select ng-model="setting.state" required>
+	<option>Alaska</option>
+	<option>Arizona</option>
+	<option>Alabama</option>
+	<option>California</option>
+	<option>Colorado</option>
+	<option>Connecticut</option>
+	<option>Delaware</option>
+	<option>Florida</option>
+	<option>Georgia</option>
+	<option>Hawaii</option>
+	</select>
+</div>
+<div class="edit-text-box"><label>City</label> 
+	<input ng-model="setting.city" type="text" placeholder="" required />
+</div>
+<div class="edit-text-box"><label>Zipcode</label> 
+	<input max="5" numbers  ng-model="setting.zipcode" type="text" placeholder="" required />
+</div>
+<div class="edit-text-box"><label>Relationship status</label>
+	<select ng-model="setting.relation_status" required>
+		 <option value=''>Select</option>	
+	    <option value='Single'>Single</option>
+	     <option value='Mrried'>Mrried</option>
+         <option value='other'>other</option>
+	</select>
+</div>
+<div class="edit-text-box"><label>Date Of birth</label> 
+	<input ng-model="dob" type="text" placeholder="" required  uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" show-button-bar="false"/>
+
+			<i class="fa fa-calendar fa-2x" ng-click="open2()"></i>
+</div>
+<div class="edit-text-box"><label>About Me</label> 
+	<textarea ng-model="setting.about" required ></textarea>
+</div>
+<div class="edit-text-box"><label>Topics that you care about</label> 
+    <select class="multiselect" ng-model="setting.topics" multiple>
+		<option value='Politics'>Politics</option>	
+	    <option value='GMOs'>GMOs</option>
+	    <option value='Organic'>Organic</option>
+        <option value='Fare trade'>Fare trade</option>
+		<option value='Free trade'>Free trade</option>
+		<option value='Religion'>Religion</option>
+		<option value='Gun ownership'>Gun ownership</option>
+		<option value='Gun control'> Gun control</option>
+		<option value='Pro-choice'> Pro-choice</option>
+		<option value='Pro-life'> Pro-life</option>
+		<option value='other'>The environment</option>
+		<option value='Global warming'> Global warming</option>
+		<option value='Corporate transparency'>Corporate transparency</option>
+		<option value='Unions'> Unions</option>
+		<option value='Water usage'> Water usage</option>
+		<option value='Social welfare'> Local sourcing</option>
+		<option value='other'>Social welfare</option>
+		<option value='LGBT rights'>Gender equality</option>
+		<option value='other'>LGBT rights</option>
+	</select>
+</div>
+
+<div class="edit-text-box">
+ 
+    <input ng-click="submitted = true" class="submit-btn-edit-profile" type="submit" value="Submit" /></div>
+</div>
+</div>
+</form>
+
+<div class="dash-edit-profile-sctn">
+			<h2>Change password</h2>
+			 <form role="form" ng-submit="updatepassword(editpass)" name="changepass" novalidate>
+			<div class="dash-edit-profile-sctn-inner">
+			
+			<div class="edit-text-box"><label>Old Password</label> 
+				<input type="password" name='oldpassword' placeholder="" ng-model="editpass.oldpassword" required >
+			<span class="eror-msg" ng-if="changepass.oldpassword.$dirty" ng-messages="changepass.oldpassword.$error"><p class="pass-error" ng-message="required">Old password is required.</p></span>
+			</div>
+			<div class="edit-text-box"><label>New Password</label> 
+				<input type="password"  name='newPassword' ng-model="editpass.newPassword" required>
+				<span class="eror-msg" ng-if="changepass.newPassword.$dirty" ng-messages="changepass.newPassword.$error"><p class="pass-error" ng-message="required">New Password is required.</p></span>
+			</div>
+			<div class="edit-text-box"><label>Confirm Password</label> 
+				<input type="password" name='confirm' ng-model="editpass.confirm" compare-to="editpass.newPassword" required >
+				<span class="eror-msg"  ng-if="changepass.confirm.$dirty" ng-messages="changepass.confirm.$error"><p class="pass-error" ng-message="required"> confirm password is requrird.</p></span>
+			<span class="eror-msg"  ng-if="changepass.confirm.$dirty" ng-messages="changepass.confirm.$error"><p  class="pass-error" ng-message="compareTo">Password must match.</p></span>
+			</div>
+			
+			<div class="edit-text-box">
+			 
+				<input type="submit"  ng-disabled="changepass.$invalid" class="submit-btn-edit-profile" value="Submit"></div>
+			</div>
+			</form>
+</div>
+
+</div>
+
+
+
+</div>
+<!--right dashboard end-->
+
+</div>
+<user-footer></user-footer>

@@ -1,0 +1,22 @@
+ <div class="col-lg-3 col-md-3 left-dash lft-dash-prdct-page-old">
+<div class="lft-latst-reviews">
+        <h3>Alternate Products</h3>
+        <div class="latst-reviw-box-lft" ng-repeat="alternateProduct in alternateProduct">
+             <img  ng-if="alternateProduct.product.image" class="usr-img" src="uploads/products/small/{{ alternateProduct.product.image }}" alt="" title="" />
+            <img ng-if="!alternateProduct.product.image" class="usr-img" src="lib/img/noproduct.jpg" alt="" title="" />   
+            <div class="reviw-dtail">
+                <a class='titlesidebarreview' ui-sref='product-view({id:alternateProduct.product._id})' > {{alternateProduct.product.name | cut:true:20}} </a>
+               
+                <div class="star-ratng">
+                    <div class="star-rating click-rating-disable" is-disable='true'  star-rating rating-value="alternateProduct.rating" data-max="5"></div>
+                </div>
+                <div class="lft-dash-fav-shop-btn">
+                <img src="lib/img/heart-icn-green.png" ng-controller="homeCtrl" ng-click="open('login','lg')" alt="Save as favorite" title="Save as favorite"/>
+                <img src="lib/img/list-icn.png"  ng-controller="homeCtrl" ng-click="open('login','lg')"  alt="Save In Shopping List" title="Save In Shopping List"/>
+                 </div>
+                <p>{{alternateProduct.product.description| cut:true:100}}</p>
+
+            </div>
+        </div>
+    </div>
+    </div>

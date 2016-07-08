@@ -1,0 +1,24 @@
+ <div class="col-lg-3 col-md-3 left-dash lft-dash-prdct-page-old">
+<div class="lft-latst-reviews">
+        <h3>Alternate Products</h3>
+        <div class="latst-reviw-box-lft" ng-repeat="alternateProduct in alternateProduct">
+             <img  ng-if="alternateProduct.product.image" class="usr-img" src="uploads/products/small/{{ alternateProduct.product.image }}" alt="" title="" />
+            <img ng-if="!alternateProduct.product.image" class="usr-img" src="lib/img/noproduct.jpg" alt="" title="" />   
+            <div class="reviw-dtail">
+                <a class='titlesidebarreview' ui-sref='view-product({id:alternateProduct.product._id})' > {{alternateProduct.product.name | cut:true:20}} </a>
+               
+                <div class="star-ratng">
+                    <div class="star-rating click-rating-disable" is-disable='true'  star-rating  rating-value="alternateProduct.averageRating.total_avrg" data-max="5"></div>
+                </div>
+                <div class="lft-dash-fav-shop-btn">
+                <img src="lib/img/heart-icn-green.png" ng-if="alternateProduct.isfav == 0" alt="Save as favorite" title="Save as favorite"   ng-click="productAsFav(alternateProduct.product_id,alternateProduct.user_id,'add');"  />
+                <img title="Already as Favorite" ng-if="alternateProduct.isfav == 1" alt="Already as Favorite" src="lib/img/heart-icn-green-fill.png"  ng-click="productAsFav(alternateProduct.product_id,alternateProduct.user_id,'remove');"  >
+                <img src="lib/img/list-icn.png" ng-if="alternateProduct.shopingList == 0"  alt="Save In Shopping List" title="Save In Shopping List"  ng-click="productInShoppingList(alternateProduct.product_id,alternateProduct.user_id,'add');"  />
+                <img src="lib/img/list-icn-fill.png" ng-if="alternateProduct.shopingList == 1" alt="Already In Shopping List" title="Already In Shopping List"  ng-click="productInShoppingList(alternateProduct.product_id,alternateProduct.user_id,'remove')" />
+                </div>
+                <p class="ng-binding">{{alternateProduct.product.description| cut:true:100}}</p>
+
+            </div>
+        </div>
+    </div>
+    </div>

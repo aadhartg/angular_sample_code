@@ -1,0 +1,20 @@
+<div class="left-dash-sctions">
+<h4>Products</h4>
+<ul class="prodcts-list-top product-list-front">
+    <li ng-repeat="product in productslist">
+
+<!--        <a >
+            <img src="{{productimagepath}}small/{{product.image}}" width="23" height="23" alt="{{product.name}}" title="{{product.name}}" /> 
+            {{product.name|cut:true:30}} -->
+
+        <a ui-sref="view-product({id:product._id})">
+        <img ng-if="product.image" src="{{productimagepath}}small/{{product.image}}" width="23" height="23"  /> {{product.name|cut:true:20}} 
+        <img ng-if="!product.image" src="lib/img/noproduct.jpg" width="23" height="23"  />
+        <span>{{product.averageRating.total_avrg}}/5</span>
+        </a>
+    </li>
+    
+</ul>
+<div ng-if="totalproducts >5"  class="view-all"><a ui-sref="product-all">view all</a></div>
+
+</div>

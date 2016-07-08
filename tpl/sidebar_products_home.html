@@ -1,0 +1,15 @@
+<div class="left-dash-sctions">
+<h4>Recent Products</h4>
+<ul class="prodcts-list-top product-list-front">
+    <li ng-repeat="product in productslist">
+
+        <a ui-sref="product-view({id:product._id})">
+        <img ng-if="product.image" src="{{productimagepath}}small/{{product.image}}" width="23" height="23"  /> {{product.name|cut:true:30}} 
+        <img ng-if="!product.image" src="lib/img/noproduct.jpg" width="23" height="23"  />
+        
+        </a>
+    </li>
+    
+</ul>
+
+</div>

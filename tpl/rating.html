@@ -1,0 +1,44 @@
+
+<div class="modal-content review-popup" id="login-modal">
+      		<div class="modal-header login_modal_header">
+        		<button type="button" ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<h2 class="modal-title" id="myModalLabel">Reviews with {{rating}} rating</h2>
+      		</div>
+      		<div class="modal-body login-modal">
+<div class="rght-prdct-comnt-box user-profile-cmnt" ng-repeat="singleProduct in products">
+       <div>    
+      
+        <div class="prdct-descrptn-box">
+        <div class="lft-img">
+       <img ng-if="singleProduct.product.image" class="prdct-img" src="uploads/products/small/{{singleProduct.product.image}}" title="{{singleProduct.name | capitalize}}" />
+        <img ng-if="!singleProduct.product.image" title="mail" alt="" src="lib/img/noproduct.jpg" width="60" height="60">
+
+        </div>
+        
+        <div class="prdct-dtails">
+        <a ng-click="cancel()" ng-if="!token" ui-sref="product-view({id:singleProduct.product_id})"> {{singleProduct.product.name | capitalize}} </a>
+         <a  ng-click="cancel()" ng-if="token" ui-sref="view-product({id:singleProduct.product_id})"> {{singleProduct.product.name | capitalize}} </a>
+        <div class="user-profile-cmnt">
+        <img title="" alt="" src="uploads/users/small/{{singleProduct.user.image}}" class="user-pic-smal">
+        <div class="cmnt-dtail-usr">
+         <a ng-click="cancel()" ng-if="token" ui-sref="view-profile({id:singleProduct.user_id})">{{singleProduct.user.first_name}} {{singleProduct.user.last_name}}. <span ng-if='singleProduct.user.state'>{{ singleProduct.user.city}}, {{ singleProduct.user.state}}</span></a>
+		 <a ng-click="cancel()"  ng-if="!token"  ui-sref="users-profile({id:singleProduct.user_id})">{{singleProduct.user.first_name}} {{singleProduct.user.last_name}}. <span ng-if='singleProduct.user.state'>{{ singleProduct.user.city}}, {{ singleProduct.user.state}}</span></a>
+         <div class="star-rating click-rating-disable "  star-rating rating-value="singleProduct.rating" data-max="5"></div> 
+        <div class="reviw-popup-date"> <span am-time-ago="singleProduct.created_at"></span></div>
+		<p>{{singleProduct.description}}</p>
+      
+        </div>
+        </div>
+        
+        </div>
+        </div>
+        </div><!-- end ngIf: feedData.activity_on=="product" -->
+        <!-- ngIf: feedData.activity_on=="fourm" -->
+        
+        </div>
+      		</div>
+      		<div class="modal-footer login_modal_footer"></div>
+    	</div>
+ 
+ 
+

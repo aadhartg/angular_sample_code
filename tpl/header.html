@@ -1,0 +1,53 @@
+<div class="wrapper">
+
+
+<div class="dash-header">
+<div class="col-md-3 col-lg-3 dash-logo"><a ui-sref="userdashboard"><img src="lib/img/logo-dash.png" alt="" title="" /></a></div>
+<div class="col-md-6 col-lg-6 search-box dash-top-search">
+<div class="search-box-inner-black">
+<div  class="search-box-main">
+		<form>
+	<div  class="input-group" ng-controller="ProductsController" >
+                
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input id="inner_search_text" type="text" ng-model="Search"   class="form-control search-txt" name="x" placeholder="explore products, users, forums,communities">
+                
+                 <div class="input-group-btn search-panel">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                    	<span id="search_concept">{{filterValue}}</span> <span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a ng-click="filterOptions('All')" >All</a></li>
+                      <li><a ng-click="filterOptions('Products')">Products</a></li>
+                      <li><a ng-click="filterOptions('Users')">Users</a></li>
+                      <li ><a ng-click="filterOptions('Forums')">Forums</a></li>
+					  <li ><a ng-click="filterOptions('community')">Communities</a></li>
+                      <!--<li><a>Communities</a></li>-->
+                    </ul>
+                </div>
+                <span class="input-group-btn">
+                    <button class="btn btn-default search-icn" type="submit" ng-click="innerSearch(Search)"><img title="" alt="" src="lib/img/search-icn.png"></button>
+                </span>
+        </div>
+        </form>
+        </div>
+</div>        
+</div>
+    
+<div class="col-md-3 col-lg-3 top-right-user" ng-if='token'>
+<div class="btn-group" uib-dropdown is-open="status.isopen">
+      <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+        {{ userinfo.first_name | capitalize }} {{ userinfo.last_name | capitalize }} <span class="caret"></span>
+      </button>
+      <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+          <li role="menuitem"><a ui-sref="user-product">Add Product</a></li>
+        <li role="menuitem"><a ui-sref="profile-setting">Profile Settings</a></li>
+        <li role="menuitem"><a ui-sref="privacy-setting">Privacy Settings</a></li>
+        <li role="menuitem"><a ui-sref="view-profile">Profile View</a></li>
+        <li role="menuitem" class="logout"><a ui-sref="logout" >Logout</a></li>
+    </ul>
+    </div>
+</div>
+<div ng-if='!token' class="login-btn inner-hdr"><a ng-controller="homeCtrl" ng-click="open('login','lg')" >Login</a>/<a ng-controller="homeCtrl" ng-click="open('siginup','lg')">Sign Up</a></div>
+</div>
+<!--header end-->

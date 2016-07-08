@@ -1,0 +1,30 @@
+<!--footer starts-->
+<footer class="footer-dash">
+<div class="container">
+<div class="col-md-2 footer-nav">
+<ul>
+<li><a href="#">Home</a></li>
+<li><a ui-sref="page({id:'about-us'})">About Us</a></li>
+<li><a ui-sref="page({id:'communities'})">Communities</a></li>
+<li><a ui-sref="page({id:'help'})">Help</a></li>
+
+</ul>
+</div>
+<form role="form" name ="subscibe" ng-submit="subscribe(email)"  name="detail" novalidate >
+<div class="col-md-4 newsleter">
+<p>Signup for Newslettersada</p> 
+<input type="text" name='email' placeholder="Enter your Email Address" ng-model='email' />
+<button type="submit" ng-disabled="subscibe.$invalid" >subscribe</button>
+ 
+</div>
+</form>
+
+<div class=" col-md-6 advertismnt-ftr">
+<img src="lib/img/adv-1.jpg" alt="" title="" />
+<img class="no-margin-img" src="lib/img/adv-2.jpg" alt="" title="" />
+</div>
+</div>
+</footer>
+
+
+</div>

@@ -1,0 +1,27 @@
+<div class="slider-thumbnail" ng-if='comm.length>0'>
+<div class="container" data-ride="carousel">
+<h5>Communities related to this product</h5>
+<div id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">            
+            <div class="item" ng-class="{active:$first}" ng-repeat="community in comm">
+            <div class="col-md-2 col-lg-2" ng-repeat="singalcomm in community" ><a ui-sref="communityView({id:singalcomm.comuunity._id})">
+            <img  ng-if='singalcomm.comuunity.image' src="uploads/communities/small/{{singalcomm.comuunity.image}}" alt="" title="" />
+            <img ng-if='!singalcomm.comuunity.image' src="uploads/communities/defaultsmall.jpg" alt="" title="" />
+            <p>{{singalcomm.comuunity.title}}</p></a></div>            
+            </div>    
+        </div>
+
+        <!-- Controls -->
+        <span class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class=""><img src="lib/img/slider-lft-arow.png" alt="" title="" /></span>
+        </span>
+        <span class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class=""><img src="lib/img/slider-rght-arow.png" alt="" title="" /></span>
+        </span>
+
+    </div>
+</div>
+</div>

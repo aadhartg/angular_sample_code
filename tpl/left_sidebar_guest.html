@@ -1,0 +1,75 @@
+<div class="col-lg-3 col-md-3 left-dash">
+    <!-- Side bar products -->
+    <div class="left-dash-sctions">
+        <h4>Products</h4>
+        <ul class="prodcts-list-top product-list-front">
+            <li ng-repeat="product in productslist">
+                <a  ng-if='!token' ui-sref="product-view({id:product._id})">
+                <img ng-if="product.image" src="{{productimagepath}}small/{{product.image}}" width="23" height="23"  /> {{product.name|cut:true:20}} 
+                <img ng-if="!product.image" src="lib/img/noproduct.jpg" width="23" height="23"  />
+                <span>{{product.averageRating.total_avrg}}/5</span>
+                </a>
+                <a ng-if='token' ui-sref="view-product({id:product._id})">
+                <img ng-if="product.image" src="{{productimagepath}}small/{{product.image}}" width="23" height="23"  /> {{product.name|cut:true:20}} 
+                <img ng-if="!product.image" src="lib/img/noproduct.jpg" width="23" height="23"  />
+                <span>{{product.averageRating.total_avrg}}/5</span>
+                </a> 
+            </li>    
+        </ul>
+        <div ng-if="totalproducts >5"  class="view-all">
+             <a ui-sref="guest-product-all">view all</a>-
+        </div>
+    </div>
+
+    <!-- side bar products end -->
+
+    <!-- Side bar fourm -->
+    <div class="left-dash-sctions">
+        <h4>Forums          
+        </h4>
+        <ul class="prodcts-list-top">
+            <li ng-repeat="data in fourm" ><a ng-if='token' ui-sref="fourmView({id:data._id})">{{ data.title | cut:true:200}}</a> <a  ng-if='!token' ui-sref="fourm-details({id:data._id})">{{ data.title | cut:true:200}}</a></li>
+        </ul>
+        <div ng-if="fourmtotal >5"  class="view-all">
+              <a ui-sref="listfourms">view all</a>
+        </div>
+    </div>
+    <!-- side bar fourm end-->
+
+
+    <!-- Side bar Communities -->
+    <div class="left-dash-sctions">
+        <h4>Communities</h4>
+        <ul class="prodcts-list-top">
+            <li>In Door </li>
+            <li>Body Care </li>
+            <li>Home Care </li>
+            <li>Food </li>
+        </ul>
+    </div>
+    <!-- Side bar Communities end -->
+
+    <!-- Side bar latest reviews -->
+    <div class="lft-latst-reviews" >
+        <h3>Latest Reviews</h3>
+        <div class="latst-reviw-box-lft"  ng-repeat="reviewDetail in reviews" >
+            <img  ng-if="reviewDetail.product.image" class="usr-img" src="uploads/products/small/{{ reviewDetail.product.image }}" alt="" title="" />
+            <img ng-if="!reviewDetail.product.image" class="usr-img" src="lib/img/noproduct.jpg" alt="" title="" />    
+            <div class="reviw-dtail" >
+                <a ng-if='token' class='titlesidebarreview'ui-sref="view-product({id:reviewDetail.product._id})">{{reviewDetail.product.name | cut:true:20}}</a>
+                <a ng-if='!token' class='titlesidebarreview'ui-sref="product-view({id:reviewDetail.product._id})">{{reviewDetail.product.name | cut:true:20}}</a>
+                <a ng-if='token' ui-sref='view-profile({id:reviewDetail.user._id})' class='user-name-cmnt-lft'>by {{reviewDetail.user.first_name }} {{reviewDetail.user.last_name }} <span am-time-ago="reviewDetail.created_at"></span></a>
+                <a ng-if='!token'  ui-sref='users-profile({id:reviewDetail.user._id})' class='user-name-cmnt-lft'>by {{reviewDetail.user.first_name }} {{reviewDetail.user.last_name }} <span am-time-ago="reviewDetail.created_at"></span></a>
+                <div class="star-ratng" ng-click="openrating('lg',reviewDetail.rating)">
+                    <div class="star-rating click-rating-disable" star-rating rating-value="reviewDetail.rating" data-max="5"></div>
+                </div>
+                <p>{{reviewDetail.description| cut:true:100}}</p>
+            </div>
+        </div>
+        <div ng-if="totalreviews >5"  class="view-all">
+         <a  ui-sref="guest-reviewi-all">view all</a>
+         </div>   
+    </div>
+     <!--  Side bar latest reviews end -->
+
+</div>

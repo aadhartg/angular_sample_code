@@ -1,0 +1,33 @@
+<div class="modal-content" id="invite-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header login_modal_header">
+          <button type="button" ng-click="cancel()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h2 class="modal-title" id="myModalLabel">INVITE OTHERS</h2>
+        </div>
+        <div class="modal-body login-modal">     
+         <div id='social-icons-conatainer'>
+           <div class='modal-body-left'>
+			<form method="post" ng-submit="invite()" name="signupForm" novalidate >
+				<div class="form-group">
+				   <label>Email</label>
+				   <tags-input ng-model="emails" placeholder="Add emails" id='email'></tags-input>
+				</div>
+				<div class="invite-btn-box">
+					   <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-success modal-login-btn invite-btn-pop">Invite</button>
+				</div>				
+			</form>
+            <div class="invite-option-or-box"><span>or</span> <p></p></div>
+            <form method="post" ng-submit="inviteContacts(contact)"  name="signupForm" novalidate >
+				<div class="invite-popup-plugin-box"><a ng-if='!contactemails.length'  class="import"  ng-click="auth()" ><img src="lib/img/invite-popup-img.jpg" alt="" title="" /></a>
+					<ul class='emails' ng-if='contactemails.length'>
+						<li  ng-repeat="emailscontact in contactemails" ><input type='checkbox' ng-model='selected[emailscontact]' value={{emailscontact}} >{{emailscontact}}</li>
+					</ul>
+				</div>				
+                <div class="invite-btn-box green-btn" ng-if='contactemails.length'  ><button type="submit"  class="invite-btn-pop">INVITE</button></div>       
+			 </form>	
+          </div>		
+        </div>
+    <div class="modal-footer login_modal_footer"></div>
+</div>
+</div>
